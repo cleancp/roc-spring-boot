@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <!-- 日志输出位置，放到服务器/data/logs/项目名称 -->
+    <property name="logRoot" value="${basepath}/${parent.artifactId}"/>
+    <!--日志文件输出日志格式-->
+    <property name="logPatten" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{BOOT_TRACE_CONTEXT:-} %thread %logger{35} %level - %.-15000msg %n"/>
+    <!--控制台输出的日志格式-->
+    <property name="consolePatten" value="%black(%d{yyyy-MM-dd HH:mm:ss}) %cyan(%X{BOOT_TRACE_CONTEXT:-}) %green([%thread]) %highlight(%-5level) %yellow(%logger) - %black(%.-15000msg%n)"/>
+
+    <!-- ==================== 控制台输出 ===================== -->
+    <appender name="STD-OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${consolePatten}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${log-level}</level>
+        </filter>
+    </appender>
+
+    <appender name="INFO-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${log-level}</level>
+        </filter>
+        <file>${logRoot}/info.log</file>
+        <encoder>
+            <pattern>${logPatten}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${logRoot}/info_%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ERROR-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <file>${logRoot}/error.log</file>
+        <encoder>
+            <pattern>${logPatten}</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${logRoot}/error_%d{yyyyMMdd}.%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="STD-OUT" />
+        <appender-ref ref="INFO-OUT" />
+        <appender-ref ref="ERROR-OUT" />
+    </root>
+
+    <!-- 打印SQL -->
+    <logger name="com.zhilingsd.collection" level="${log-level}"/>
+
+
+</configuration>
