@@ -1,9 +1,12 @@
 package com.today.roc.springboot.base;
 
+import com.today.roc.springboot.base.config.RocTwoInterceptor;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -18,12 +21,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @ComponentScan("com.today.roc.springboot")
 @EnableTransactionManagement
+//@MapperScan
 public class SpringBootBaseApp {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootBaseApp.class, args);
         log.info("=================启动成功=================");
     }
+
+//    @Bean
+//    public RocTwoInterceptor interceptor(){
+//        return new RocTwoInterceptor();
+//    }
 
 //    @Bean
 //    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {

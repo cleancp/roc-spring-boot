@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @createTime 2021年03月01日 10:39*
  * log.info()
  */
-@Api(tags = "hello")
+@Api(tags = "hello2")
 @RestController
-@RequestMapping("/hello")
-public class HelloController {
+@RequestMapping("/hello2")
+public class Hello2Controller {
 
-    private final Logger logger = LoggerFactory.getLogger(HelloController.class);
+    private final Logger logger = LoggerFactory.getLogger(Hello2Controller.class);
 
     @ApiOperation(value = "hello")
     @PostMapping("/")
@@ -29,7 +29,6 @@ public class HelloController {
         logger.debug("输出日志信息");
         return "hello world";
     }
-
     @ApiOperation(value = "error")
     @GetMapping("/error")
     public String error(){
