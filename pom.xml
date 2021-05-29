@@ -31,6 +31,7 @@
         <guava_version>29.0-jre</guava_version>
         <commons-lang3_version>3.6</commons-lang3_version>
         <commons_io_version>2.5</commons_io_version>
+        <transmittable.version>2.12.1</transmittable.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -159,6 +160,11 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons_io_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
