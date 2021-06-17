@@ -1,6 +1,8 @@
 package com.today.roc.springboot.mybatisplus.controller;
 
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
+import com.google.common.collect.Lists;
 import com.today.roc.springboot.mybatisplus.async.AsyncOperateCondition;
 import com.today.roc.springboot.mybatisplus.async.AsyncOperateContextHolder;
 import com.today.roc.springboot.mybatisplus.form.BinaryTupleForm;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -53,5 +58,7 @@ public class NextopThirdwareController {
         iNextopThirdwareService.testUpdate(form);
         return "";
     }
+
+
 
 }
