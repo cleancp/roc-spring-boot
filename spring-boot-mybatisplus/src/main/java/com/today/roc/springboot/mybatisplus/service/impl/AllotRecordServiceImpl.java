@@ -80,7 +80,6 @@ public class AllotRecordServiceImpl implements AllotRecordService {
         List<Long> allotSkuIdList = collectBean.getAllotSkuIdList();
         List<Long> skuIdListFromComposeSku = collectBean.getSkuIdListFromComposeSku();
 
-        
 
         if (searchNotAllot) {
             //查未分配的
